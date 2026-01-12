@@ -1,5 +1,8 @@
+"use client"
+
 import * as React from "react"
-import { GalleryVerticalEnd } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { GalleryVerticalEnd, ChevronRight } from "lucide-react"
 import { mainNavRoutes, footerNavRoutes } from "@/config/routes"
 
 import {
@@ -14,6 +17,7 @@ import {
 } from "@/components/ui/sidebar"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname()
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
@@ -36,31 +40,39 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {mainNavRoutes.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
-                  <a href={item.url} className="font-medium">
-                    <item.icon className="size-4" />
-                    <span>{item.title}</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+            {mainNavRoutes.map((item) => {
+              const isActive = pathname === item.url
+              return (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild isActive={isActive}>
+                    <a href={item.url} className="font-medium">
+                      <item.icon className="size-4" />
+                      <span>{item.title}</span>
+                      {isActive && <ChevronRight className="size-4 ml-auto" />}
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )
+            })}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          {footerNavRoutes.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
-                <a href={item.url}>
-                  <item.icon className="size-4" />
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          {footerNavRoutes.map((item) => {
+            const isActive = pathname === item.url
+            return (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild isActive={isActive}>
+                  <a href={item.url}>
+                    <item.icon className="size-4" />
+                    <span>{item.title}</span>
+                    {isActive && <ChevronRight className="size-4 ml-auto" />}
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            )
+          })}
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
