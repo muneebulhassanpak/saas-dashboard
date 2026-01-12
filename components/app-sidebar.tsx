@@ -1,15 +1,6 @@
 import * as React from "react"
-import {
-  GalleryVerticalEnd,
-  LayoutDashboard,
-  BarChart3,
-  Users,
-  CreditCard,
-  Activity,
-  HelpCircle,
-  Settings,
-  LogOut
-} from "lucide-react"
+import { GalleryVerticalEnd } from "lucide-react"
+import { mainNavRoutes, footerNavRoutes } from "@/config/routes"
 
 import {
   Sidebar,
@@ -20,57 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-
-const data = {
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: LayoutDashboard,
-    },
-    {
-      title: "Analytics",
-      url: "/dashboard/analytics",
-      icon: BarChart3,
-    },
-    {
-      title: "Users",
-      url: "/dashboard/users",
-      icon: Users,
-    },
-    {
-      title: "Subscriptions",
-      url: "/dashboard/subscriptions",
-      icon: CreditCard,
-    },
-    {
-      title: "Activity",
-      url: "/dashboard/activity",
-      icon: Activity,
-    },
-    {
-      title: "Support",
-      url: "/dashboard/support",
-      icon: HelpCircle,
-    },
-  ],
-  navFooter: [
-    {
-      title: "Settings",
-      url: "/dashboard/settings",
-      icon: Settings,
-    },
-    {
-      title: "Logout",
-      url: "/logout",
-      icon: LogOut,
-    },
-  ],
-}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -95,7 +36,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {data.navMain.map((item) => (
+            {mainNavRoutes.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
                   <a href={item.url} className="font-medium">
@@ -110,7 +51,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          {data.navFooter.map((item) => (
+          {footerNavRoutes.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <a href={item.url}>
