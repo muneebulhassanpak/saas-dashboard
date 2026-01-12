@@ -24,7 +24,8 @@ export const ROUTES = {
   ACTIVITY: "/dashboard/activity",
   SETTINGS: "/dashboard/settings",
   SUPPORT: "/dashboard/support",
-  LOGOUT: "/logout",
+  LOGIN: "/login",
+  LOGOUT: "/login",
 } as const
 
 export const mainNavRoutes: Route[] = [
